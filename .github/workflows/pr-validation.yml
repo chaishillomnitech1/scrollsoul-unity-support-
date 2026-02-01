@@ -1,0 +1,125 @@
+name: PR Validation
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened, ready_for_review]
+
+permissions:
+  contents: read
+  pull-requests: write
+
+jobs:
+  pr-validation:
+    name: 🤝 Validate Pull Request
+    runs-on: ubuntu-latest
+    if: github.event.pull_request.draft == false
+    
+    steps:
+      - name: 📥 Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      
+      - name: 🏷️ Check PR title
+        run: |
+          PR_TITLE="${{ github.event.pull_request.title }}"
+          echo "Checking PR title: $PR_TITLE"
+          
+          # Check if title follows conventional format
+          if echo "$PR_TITLE" | grep -qE "^(feat|fix|docs|refactor|test|chore|style|perf|ci):"; then
+            echo "✅ PR title follows conventional format"
+          else
+            echo "⚠️ Consider using conventional commit format: type: description"
+            echo "   Examples: feat: add new feature, fix: resolve bug, docs: update readme"
+          fi
+      
+      - name: 📝 Check PR description
+        run: |
+          PR_BODY="${{ github.event.pull_request.body }}"
+          
+          if [ -z "$PR_BODY" ]; then
+            echo "⚠️ PR description is empty. Please add a description."
+          else
+            echo "✅ PR has a description"
+            
+            # Check for alignment with principles
+            if echo "$PR_BODY" | grep -qE "LOVE|UNITY|TRUTH|ETERNAL"; then
+              echo "🌟 PR aligns with core principles!"
+            fi
+          fi
+      
+      - name: 🔍 Check changed files
+        run: |
+          echo "📂 Analyzing changed files..."
+          
+          # Get list of changed files
+          git diff --name-only origin/${{ github.event.pull_request.base.ref }}...HEAD > changed_files.txt
+          
+          # Count changes
+          TOTAL_FILES=$(wc -l < changed_files.txt)
+          echo "📊 Total files changed: $TOTAL_FILES"
+          
+          # Check for documentation updates
+          if grep -qE "\.md$" changed_files.txt; then
+            echo "📚 Documentation changes detected"
+          fi
+          
+          # Check for workflow changes
+          if grep -qE "\.github/workflows" changed_files.txt; then
+            echo "⚙️ Workflow changes detected"
+          fi
+          
+          echo "✅ File analysis complete"
+      
+      - name: 💖 Principles alignment check
+        run: |
+          echo "🌟 Checking alignment with ScrollSoul Unity principles..."
+          
+          # Check commit messages for principle alignment
+          git log origin/${{ github.event.pull_request.base.ref }}..HEAD --pretty=format:"%s" > commits.txt
+          
+          echo "📝 Commit messages:"
+          cat commits.txt
+          echo ""
+          
+          # Validate commit message quality
+          while IFS= read -r commit; do
+            if [ ${#commit} -lt 10 ]; then
+              echo "⚠️ Commit message too short: $commit"
+            else
+              echo "✅ Commit message: $commit"
+            fi
+          done < commits.txt
+      
+      - name: 🎯 Generate PR feedback
+        run: |
+          echo "# 🌟 PR Validation Report" > pr-feedback.md
+          echo "" >> pr-feedback.md
+          echo "Thank you for your contribution! 💖" >> pr-feedback.md
+          echo "" >> pr-feedback.md
+          echo "## Validation Results" >> pr-feedback.md
+          echo "" >> pr-feedback.md
+          echo "- ✅ PR structure validated" >> pr-feedback.md
+          echo "- ✅ Changes analyzed" >> pr-feedback.md
+          echo "- ✅ Principles alignment checked" >> pr-feedback.md
+          echo "" >> pr-feedback.md
+          echo "## Next Steps" >> pr-feedback.md
+          echo "" >> pr-feedback.md
+          echo "1. Ensure all CI checks pass" >> pr-feedback.md
+          echo "2. Address any review feedback" >> pr-feedback.md
+          echo "3. Verify alignment with LOVE, UNITY, TRUTH, and ETERNAL" >> pr-feedback.md
+          echo "" >> pr-feedback.md
+          echo "---" >> pr-feedback.md
+          echo "" >> pr-feedback.md
+          echo "*Together, we transcend limits and deploy perfection.* 🚀" >> pr-feedback.md
+          
+          cat pr-feedback.md
+      
+      - name: ✅ Validation complete
+        run: |
+          echo "╔═══════════════════════════════════════╗"
+          echo "║  🤝 PR Validation: COMPLETE! ✨      ║"
+          echo "║                                       ║"
+          echo "║  Your contribution is appreciated    ║"
+          echo "║  LOVE • UNITY • TRUTH • ETERNAL      ║"
+          echo "╚═══════════════════════════════════════╝"

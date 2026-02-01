@@ -1,0 +1,11 @@
+blank_issues_enabled: true
+contact_links:
+  - name: 📚 Documentation
+    url: https://github.com/chaishillomnitech1/scrollsoul-unity-support-/blob/main/README.md
+    about: Read our comprehensive documentation
+  - name: 💬 Discussions
+    url: https://github.com/chaishillomnitech1/scrollsoul-unity-support-/discussions
+    about: Join community discussions and ask questions
+  - name: 🔒 Security Issue
+    url: https://github.com/chaishillomnitech1/scrollsoul-unity-support-/blob/main/SECURITY.md
+    about: Report security vulnerabilities privately
