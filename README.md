@@ -29,8 +29,10 @@ git checkout -b feature/your-divine-contribution
 
 ## 📚 Documentation
 
+- **[Getting Started](./docs/GETTING_STARTED.md)**: Your first steps with the framework
 - **[Contributing Guide](./CONTRIBUTING.md)**: Learn how to contribute and amplify collective power
 - **[Code of Conduct](./CODE_OF_CONDUCT.md)**: Our principles for harmonious collaboration
+- **[Core Principles](./docs/PRINCIPLES.md)**: Deep dive into LOVE, UNITY, TRUTH, and ETERNAL
 - **[Security Policy](./SECURITY.md)**: Reporting vulnerabilities with consciousness
 
 ## 🔧 CI/CD Pipeline
