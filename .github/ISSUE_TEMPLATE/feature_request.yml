@@ -1,0 +1,91 @@
+name: 💡 Feature Request
+description: Suggest an idea to amplify our collective power
+title: "[Feature]: "
+labels: ["enhancement", "triage"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        ## ✨ Thank you for your vision!
+        
+        Your ideas help us transcend limits and evolve together.
+        Please share your feature request aligned with our core principles.
+        
+        **LOVE • UNITY • TRUTH • ETERNAL**
+  
+  - type: textarea
+    id: problem
+    attributes:
+      label: 🎯 Problem Statement
+      description: What problem does this feature solve? What need does it address?
+      placeholder: Describe the problem or need...
+    validations:
+      required: true
+  
+  - type: textarea
+    id: solution
+    attributes:
+      label: 💡 Proposed Solution
+      description: Describe the feature you'd like to see
+      placeholder: Describe your ideal solution...
+    validations:
+      required: true
+  
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: 🔄 Alternatives Considered
+      description: Have you considered any alternative solutions or features?
+      placeholder: Describe alternatives you've considered...
+  
+  - type: textarea
+    id: examples
+    attributes:
+      label: 📚 Examples or Use Cases
+      description: Provide examples of how this feature would be used
+      placeholder: |
+        Example 1: ...
+        Example 2: ...
+  
+  - type: dropdown
+    id: alignment
+    attributes:
+      label: 🌟 Principle Alignment
+      description: Which core principle does this feature most align with?
+      options:
+        - 💖 LOVE - Compassionate and empathetic
+        - 🤝 UNITY - Harmonious integration
+        - 🌟 TRUTH - Transparent and authentic
+        - ♾️ ETERNAL - Sustainable and timeless
+        - 🌈 ALL - Aligns with all principles
+    validations:
+      required: true
+  
+  - type: textarea
+    id: impact
+    attributes:
+      label: 📊 Expected Impact
+      description: How will this feature benefit the community?
+      placeholder: Describe the expected positive impact...
+  
+  - type: checkboxes
+    id: contribution
+    attributes:
+      label: 🤝 Contribution
+      description: Would you be willing to contribute to this feature?
+      options:
+        - label: I am willing to submit a PR for this feature
+        - label: I can help with documentation
+        - label: I can help with testing
+  
+  - type: checkboxes
+    id: checklist
+    attributes:
+      label: ✅ Checklist
+      options:
+        - label: I have searched existing issues and feature requests
+          required: true
+        - label: This feature aligns with the ScrollSoul Unity principles
+          required: true
+        - label: I have considered the long-term sustainability of this feature
+          required: true
